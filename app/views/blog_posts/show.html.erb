@@ -6,7 +6,7 @@
     </div>
     
     <div class="panel-body">
-      <p> by <%=@blog_post.author %></p>
+      <p> by <strong><%=@blog_post.author %></strong><span class="posted-at">posted at:<%= @blog_post.created_at.strftime('%m/%d/%Y at %I:%M%p') %></span><br></span></p>
       <p> <%= @blog_post.blog_entry %></p>
       
     </div>
@@ -21,6 +21,19 @@
       <%=render 'comments/form' %>
     </div>
   
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4> Comments</h4>
+    </div>
+    
+    <% @blog_post.comments.each do|comment|%>
+    <div class="panel-body">
+      <p> <strong><%= comment.author %> </strong> said:</p>
+      <p> <%= comment.comment_entry %></p>
+      <p><spanclass="posted-at"><%=comment.created_at.strftime('%m/%d/%Y at %I:%M%p')%></span></p>
+  </div>
+  <% end%>
   
   
 </div>
